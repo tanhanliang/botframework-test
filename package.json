@@ -1,0 +1,14 @@
+{
+  "name": "test-bot",
+  "version": "1.0.0",
+  "description": "A test bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "han liang",
+  "license": "ISC",
+  "dependencies": {
+    "restify": "^6.3.4"
+  }
+}
