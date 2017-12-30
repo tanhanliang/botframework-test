@@ -1,5 +1,9 @@
 var restify = require('restify');
 var builder = require('botbuilder');
+var bad_jokes = ["A man walks into a bar. Ouch",
+				 "Why did the chicken cross the road? To get to the other side, dummy.",
+				 "Why was the big cat disqualified from the race? Because it was a cheetah.",
+				];
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -19,4 +23,13 @@ server.post('/api/messages', connector.listen());
 // Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
 var bot = new builder.UniversalBot(connector, function (session) {
     session.send("You said: %s", session.message.text);
+});
+
+bot.dialog('joke', function (session) {
+	joke_no = Math.floor((Math.random() * bad_jokes.length));
+	bad_joke = bad_jokes[joke_no];
+	session.endDialog(bad_joke);
+})
+.triggerAction({
+	matches: /^joke$/i,
 });
